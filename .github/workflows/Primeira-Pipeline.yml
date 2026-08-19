@@ -16,9 +16,16 @@ jobs:
         uses: actions/setup-python@v5
         with: 
           python-version: '3.12'
-          
+
       - name: Intalar dependências
         run: pip install pytest
 
       - name: Executar testes
         run: pytest
+
+    
+  deploy:
+    needs: test (necessidade)
+    runs-on: ubuntu-lastet
+    steps:
+        - run: echo "Deploy realizado"
