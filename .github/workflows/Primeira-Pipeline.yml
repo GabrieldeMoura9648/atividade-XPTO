@@ -1,13 +1,13 @@
 name: Primeira Pipeline
-    on:
-        push:
-            branches: [main]
-    jobs:
-        teste:
-            run-on: ubuntu-lastet
+on:
+    push:
+        branches: [main]
+jobs:
+    teste:
+        run-on: ubuntu-lastet
             
-            steps:
-                -name: Baixar Código do Repositório
-                uses: actions/checkout@v4
+        steps:
+            -name: Baixar Código do Repositório
+            uses: actions/checkout@v4
 
     
