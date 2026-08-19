@@ -2,3 +2,8 @@ name: Primeira Pipeline
     on:
         push:
             branches: [main]
+    jobs:
+        teste:
+            run-on: ubuntu-lastet
+
+    
