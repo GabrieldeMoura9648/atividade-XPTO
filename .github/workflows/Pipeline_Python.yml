@@ -21,18 +21,11 @@ jobs:
       - name: Instalar pytest
         run: pip install pytest
 
-
-      - name: Instalar pytest
-        run: pip install pytest
-
       - name: Verificar arquivos
         run: |
           pwd
           ls -la
           find . -maxdepth 2 -type f
-
-      - name: Executar teste de soma
-        run: pytest test_app.py::test_soma
 
       - name: Executar teste de soma
         run: pytest test_app.py::test_soma
