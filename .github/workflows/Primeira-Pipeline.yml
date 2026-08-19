@@ -11,21 +11,21 @@ jobs:
     steps:
       - name: Baixar Código do Repositório
         uses: actions/checkout@v4
-      
+
       - name: Configurar Python
         uses: actions/setup-python@v5
-        with: 
+        with:
           python-version: '3.12'
 
-      - name: Intalar dependências
+      - name: Instalar dependências
         run: pip install pytest
 
       - name: Executar testes
         run: pytest
 
-    
   deploy:
-    needs: test (necessidade)
-    runs-on: ubuntu-lastet
+   
+    runs-on: ubuntu-latest
+
     steps:
-        - run: echo "Deploy realizado"
+      - run: echo "Deploy realizado"
