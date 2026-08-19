@@ -1,0 +1,4 @@
+name: Primeira Pipeline
+    on:
+        push:
+            branches: [main]
