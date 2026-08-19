@@ -5,5 +5,9 @@ name: Primeira Pipeline
     jobs:
         teste:
             run-on: ubuntu-lastet
+            
+            steps:
+                -name: Baixar Código do Repositório
+                uses: actions/checkout@v4
 
     
