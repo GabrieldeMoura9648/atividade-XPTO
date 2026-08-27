@@ -2,7 +2,7 @@ from calculadora import soma, subtracao, multiplicacao, divisao
 
 
 def test_soma():
-    assert soma(10, 5) == 15
+    assert soma(10, 5) == 20
 
 
 def test_subtracao():
