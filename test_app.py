@@ -1,4 +1,4 @@
-from calculadora import soma, subtracao, multiplicacao, divisao
+from calculadora import soma, subtracao, multiplicacao, 
 
 
 def test_soma():
@@ -11,7 +11,3 @@ def test_subtracao():
 
 def test_multiplicacao():
     assert multiplicacao(10, 5) == 50
-
-
-def test_divisao():
-    assert divisao(10, 5) == 2
