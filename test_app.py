@@ -15,3 +15,4 @@ def test_multiplicacao():
 
 def test_divisao():
     assert divisao(10, 5) == 2
+    
