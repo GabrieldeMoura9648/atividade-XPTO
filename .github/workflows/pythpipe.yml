@@ -1,0 +1,148 @@
+name: primeira pipeline
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  linter:
+    name: Análise de Código (Linter)
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: instalar linter
+        run: pip install flake8
+
+      - name: Executar Linter
+        run: flake8 calculadora.py test_app.py --count --show-source --statistics
+
+  seguranca:
+    name: Análise de Segurança
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: instalar bandit
+        run: pip install bandit
+
+      - name: Executar Análise de Segurança
+        run: bandit -r calculadora.py
+
+  teste_soma:
+    name: Teste de Soma
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: instalar dependências
+        run: pip install pytest
+
+      - name: Executar teste de soma
+        run: pytest test_app.py::test_soma
+
+  teste_subtracao:
+    name: Teste de Subtração
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: instalar dependências
+        run: pip install pytest
+
+      - name: Executar teste de subtração
+        run: pytest test_app.py::test_subtracao
+
+  teste_multiplicacao:
+    name: Teste de Multiplicação
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: instalar dependências
+        run: pip install pytest
+
+      - name: Executar teste de multiplicação
+        run: pytest test_app.py::test_multiplicacao
+
+  teste_divisao:
+    name: Teste de Divisão
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: instalar dependências
+        run: pip install pytest
+
+      - name: Executar teste de divisão
+        run: pytest test_app.py::test_divisao
+
+  cobertura:
+    name: Cobertura de Código
+    runs-on: ubuntu-latest
+    steps:
+      - name: baixar código repositorio
+        uses: actions/checkout@v4
+
+      - name: configurar python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: instalar dependências
+        run: pip install pytest pytest-cov
+
+      - name: Executar Análise de Cobertura
+        run: pytest --cov=calculadora --cov-report=term-missing --cov-fail-under=80 test_app.py
+
+  deploy:
+    name: Simular Deploy
+    needs:
+      - linter
+      - seguranca
+      - teste_soma
+      - teste_subtracao
+      - teste_multiplicacao
+      - teste_divisao
+      - cobertura
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Confirmar Deploy
+        run: echo "Todos os testes individuais, cobertura, linter e segurança passaram! Deploy realizado com sucesso."
