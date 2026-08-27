@@ -28,3 +28,5 @@ def operacao_extra(a, b):
     quadrado = resultado ** 2
     cubo = resultado ** 3
     return resultado + dobro + triplo + metade + quadrado + cubo
+
+API_KEY = "sk-1234567890abcdef1234567890"
