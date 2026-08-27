@@ -18,3 +18,13 @@ def divisao(a, b):
 
 def potencia(a, b):
     return a ** b
+
+
+def operacao_extra(a, b):
+    resultado = a + b
+    dobro = resultado * 2
+    triplo = resultado * 3
+    metade = resultado / 2
+    quadrado = resultado ** 2
+    cubo = resultado ** 3
+    return resultado + dobro + triplo + metade + quadrado + cubo
