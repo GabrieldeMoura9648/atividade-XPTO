@@ -1,4 +1,4 @@
-name: primeira pipeline
+name: pythpipe
 
 on:
   push:

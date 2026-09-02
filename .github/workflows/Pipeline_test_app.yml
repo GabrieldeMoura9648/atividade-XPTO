@@ -1,4 +1,4 @@
-name: Pipeline Python
+name: Pipeline test_app
 
 on:
   push:
