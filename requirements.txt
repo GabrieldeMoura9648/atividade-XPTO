@@ -1,4 +1,4 @@
 pytest
-python-cov
+pytest-cov
 flake8
-bantid
+bandit

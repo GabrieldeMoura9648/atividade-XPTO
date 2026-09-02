@@ -15,18 +15,23 @@ jobs:
     steps:
       - name: Baixar código
         uses: actions/checkout@v4
+
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
-        
 
       - name: Instalar dependências
         run: pip install -r requirements.txt
-      
-      - name: Executar testes
-        run: pytest
+
+      - name: Executar Linter e Segurança
+        run: |
+          flake8 calculadora.py test_app.py --count --show-source --statistics
+          bandit -r calculadora.py
+
+      - name: Executar testes com Cobertura
+        run: pytest --cov=calculadora --cov-report=term-missing --cov-fail-under=80 test_app.py
 
   deploy:
     needs: qualidade
