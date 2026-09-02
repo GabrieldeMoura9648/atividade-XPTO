@@ -9,20 +9,29 @@ jobs:
   qualidade:
     strategy:
       matrix:
-        python-version: ['3.10', '3.11', '3.12']
-        os: [ubuntu-latest, ubuntu-22.04]
+        python-version: ['3.10', '3.11']
+        os: [ubuntu-latest, ubuntu-22.04, ubuntu-24.04]
     runs-on: ${{ matrix.os }}
     steps:
       - name: Baixar código
         uses: actions/checkout@v4
+
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+          cache: 'pip'
+
       - name: Instalar dependências
-        run: pip install pytest
-      - name: Executar testes
-        run: pytest
+        run: pip install -r requirements.txt
+
+      - name: Executar Linter e Segurança
+        run: |
+          flake8 calculadora.py test_app.py --count --show-source --statistics
+          bandit -r calculadora.py
+
+      - name: Executar testes com Cobertura
+        run: pytest --cov=calculadora --cov-report=term-missing --cov-fail-under=80 test_app.py
 
   deploy:
     needs: qualidade
