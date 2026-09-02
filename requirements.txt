@@ -1,0 +1,4 @@
+pytest
+python-cov
+flake8
+bantid

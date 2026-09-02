@@ -20,9 +20,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
+        
 
       - name: Instalar dependências
-        run: pip install pytest
+        run: pip install -r requirements.txt
       
       - name: Executar testes
         run: pytest
@@ -32,4 +33,3 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Deploy realizado"
-      
